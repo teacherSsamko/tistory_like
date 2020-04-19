@@ -1,0 +1,64 @@
+{% extends "blogs/_base.html" %}
+
+{% comment %} {% block content %}
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+              <form method="POST" action=".">
+                {% csrf_token %}
+                {{ form }}
+                
+
+              </form>
+          </div>
+      </div>
+  </div>
+{% endblock content %} {% endcomment %}
+
+{% block title %}
+글쓰기
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% if errors %}
+            <ul>
+
+                {% for error in errors %}
+                    <li>
+                    <div class="alert alert-primary" role="alert">
+                        {{ error }}
+                    </div>
+                    </li>
+                {% endfor %}
+            
+
+            </ul>
+        {% endif %}
+        
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <form action="." method="post">
+                {% csrf_token %}
+                <div class='form-group row'>
+                    <label for="title">제목</label>
+                    <input class='form-control' type="text" name="title" id="title" placeholder="제목을 입력하세요.">
+                </div>
+                <div class='form-group row'>
+                    <label for="content">내용</label>
+                    <textarea class='form-control' name="content" id="content" cols="30" rows="7"></textarea>
+                </div>
+                <div class='form-group row'>
+                    <label for="image">사진 첨부</label>
+                    <input class='form-control' type="file" name="image" id="image">
+                </div>
+                <div class='form-group row float-right'>
+                <button class='form-control' type="submit">저장하기</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

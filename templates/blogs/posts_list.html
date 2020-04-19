@@ -1,8 +1,15 @@
 {% extends "blogs/_base.html" %}
+
+{% block title %}
+  글 목록
+{% endblock title %}
+
 {% block content %}
 <div class="container">
     <div class="row">
-
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <a href="{% url 'post_write' %}" class='btn btn-primary float-right'>글쓰기</a>
+      </div>
     {% for post in posts %}
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="post-preview">
@@ -11,7 +18,7 @@
               {{ post.title}}
             </h2>
             <h3 class="post-subtitle">
-               {{ post. content }}
+               {{ post.content }}
             </h3>
           </a>
           <p class="post-meta">Posted by
