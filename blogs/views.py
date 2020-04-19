@@ -25,7 +25,7 @@ def post_detail(request, post_id):
 
 
 @login_required
-@require_POST
+# @require_POST
 def post_like(request):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     is_liked = post.likes.filter(id=request.user.id).exists()

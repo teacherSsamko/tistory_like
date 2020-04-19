@@ -38,6 +38,27 @@
     <!-- Custom styles for this template -->
     <link href="{% static "css/clean-blog.min.css" %}" rel="stylesheet" />
     <link href="{% static "css/style.css" %}" rel="stylesheet" />
+    <!-- post_like js -->
+    <script type="text/javascript">
+      $(document).ready(function(event) {
+        $(document).on('click', '#unlike', function(event) {
+          event.preventDefault();
+          var pk = $(this).attr('value');
+          $.ajax({
+            type: 'POST',
+            url: '{% url "post_like" %}',
+            data: {'id':pk, 'csrfmiddlewaretoken': '{{ csrftoken }}'},
+            dataType: 'json',
+            success: function(response){
+              $('#like_section').html(response['form'])
+            },
+            error: function(rs, e){
+              console.log(rs.responseText);
+            },
+          });
+        });
+      });
+    </script>
 
   </head>
 

@@ -16,7 +16,12 @@
                 <p>{{ post.content }}</p>
             </div>
         </div>
+        {% comment %} like button {% endcomment %}
+        <div id="#like_section">
+            {% include "blogs/like_section.html" %}
+        </div>
     </div>
+    
     <br>
 
 {% comment %} comments list {% endcomment %}
