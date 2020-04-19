@@ -1,4 +1,7 @@
 {% extends "blogs/_base.html" %}
+{% load social_share %}
+
+
 {% block title %}
 {{ post.title }}
 {% endblock title %}
@@ -19,6 +22,19 @@
         {% comment %} like button {% endcomment %}
         <div id="#like_section">
             {% include "blogs/like_section.html" %}
+        </div>
+        <div class='row'>
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <button type="button" class="btn btn-light float-right">
+                    {% post_to_facebook post.get_absolute_url "facebook" %}
+                </button>
+                <button type="button" class="btn btn-light float-right">
+                    {% post_to_twitter "새로운 글: {{ post.title }} 읽어보세요!" post.get_absolute_url "Post to Twitter" %}
+                </button>
+                <button type="button" class="btn btn-light float-right">
+                    {% send_email "{{ post.title }} 읽어보세요!" post.get_absolute_url "Share via email" %}
+                </button>
+            </div>
         </div>
     </div>
     
