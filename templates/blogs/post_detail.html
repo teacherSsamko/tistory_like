@@ -19,12 +19,20 @@
                 <p>{{ post.content }}</p>
             </div>
         </div>
+
+        
+
         {% comment %} like button {% endcomment %}
         <div id="#like_section">
             {% include "blogs/like_section.html" %}
         </div>
         <div class='row'>
-            <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="col-lg-6 col-md-10 mx-auto">
+                {% for tag in post.tags.all %}
+                  <span class="badge badge-dark">#{{tag.name}}</span>
+                {% endfor %}
+            </div>
+            <div class="col-lg-6 col-md-10 mx-auto">
                 <button type="button" class="btn btn-light float-right">
                     {% post_to_facebook post.get_absolute_url "facebook" %}
                 </button>

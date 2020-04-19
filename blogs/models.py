@@ -1,6 +1,7 @@
 from django.db import models
 
-# from taggit.manager import TaggableManager
+from taggit.managers import TaggableManager
+
 
 from helpers.models import BaseModel
 from users.models import User
@@ -14,7 +15,7 @@ class Post(BaseModel):
     content = models.TextField()
     image = models.ImageField(blank=True, null=True)
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
-    # tags = TaggableManager()
+    tags = TaggableManager()
 
     def __str__(self):
         return f'{self.id} - {self.title}'
